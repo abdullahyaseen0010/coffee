@@ -5,12 +5,12 @@ A modern, animated coffee shop landing page built with React 19 and Vite, styled
 Sections
 
 
-Navbar – responsive coffee-shop navigation
-Hero – animated landing/intro section
-Featured Coffees – showcase grid of coffee products (name, image, details)
-Brewing Methods – section highlighting different brewing techniques
-Testimonials – customer reviews section
-Footer – site links and social icons
+Navbar : responsive coffee-shop navigation
+Hero : animated landing/intro section
+Featured Coffees : showcase grid of coffee products (name, image, details)
+Brewing Methods : section highlighting different brewing techniques
+Testimonials : customer reviews section
+Footer : site links and social icons
 
 
 
