@@ -14,7 +14,7 @@ Footer – site links and social icons
 
 
 
-⚠️ Note: This is a front-end demo/UI project. The coffee products (e.g. "Ethiopian Yirgacheffe," "Colombian Supremo," "Blue Mountain Reserve," "Italian Dark Roast," "Hawaiian Kona," "French Vanilla Blend") are placeholder content using sample Unsplash images — there's no real store, pricing, or checkout behind them. Footer/social links are also placeholders (href="#") and are not connected to real pages. Replace this data with real content before treating it as a production site.
+⚠️ Note: This is a front-end demo/UI project. The coffee products (e.g. "Ethiopian Yirgacheffe," "Colombian Supremo," "Blue Mountain Reserve," "Italian Dark Roast," "Hawaiian Kona," "French Vanilla Blend") are placeholder content using sample Unsplash images there's no real store, pricing, or checkout behind them. Footer/social links are also placeholders (href="#") and are not connected to real pages. Replace this data with real content before treating it as a production site.
 
 
 
