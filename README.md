@@ -34,8 +34,6 @@ Install dependencies and start the dev server:
 bashnpm install
 npm run dev
 
-Open http://localhost:5173 with your browser to see the result.
-
 Other scripts
 
 bashnpm run build     # production build
