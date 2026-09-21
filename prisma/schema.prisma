@@ -1,0 +1,195 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  hashedPassword String?
+  role          String    @default("customer")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  orders        Order[]
+  reviews       Review[]
+  addresses     Address[]
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  line1      String
+  line2      String?
+  city       String
+  state      String
+  postalCode String
+  country    String
+  isDefault  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Product {
+  id            String              @id @default(cuid())
+  slug          String              @unique
+  name          String
+  description   String
+  tastingNotes  String[]
+  roastLevel    String
+  origin        String
+  basePrice     Int
+  stock         Int                 @default(0)
+  categoryId    String
+  category      Category            @relation(fields: [categoryId], references: [id])
+  images        String[]
+  variants      ProductVariant[]
+  reviews       Review[]
+  orderItems    OrderItem[]
+  cartItems     CartItem[]
+  reservations  StockReservation[]
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+}
+
+model ProductVariant {
+  id          String             @id @default(cuid())
+  productId   String
+  product     Product            @relation(fields: [productId], references: [id], onDelete: Cascade)
+  weight      Int
+  grind       String
+  price       Int
+  stock       Int
+  createdAt   DateTime           @default(now())
+  orderItems  OrderItem[]
+  cartItems   CartItem[]
+  reservations StockReservation[]
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rating    Int
+  comment   String
+  createdAt DateTime @default(now())
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String?    @unique
+  guestKey  String?    @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  items     CartItem[]
+}
+
+model CartItem {
+  id            String          @id @default(cuid())
+  cartId        String
+  cart          Cart            @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId     String
+  product       Product         @relation(fields: [productId], references: [id])
+  variantId     String?
+  variant       ProductVariant? @relation(fields: [variantId], references: [id])
+  quantity      Int
+  unitPrice     Int
+  name          String
+  selectedWeight Int?
+  selectedGrind String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@unique([cartId, productId, variantId, selectedGrind, selectedWeight], map: "cart_item_variant_unique")
+}
+
+model Order {
+  id                    String             @id @default(cuid())
+  orderNumber           String             @unique @default(cuid())
+  userId                String?
+  user                  User?              @relation(fields: [userId], references: [id])
+  subtotal              Int
+  shipping              Int
+  tax                   Int
+  discount              Int                @default(0)
+  total                 Int
+  status                String             @default("pending")
+  stripeSessionId       String?
+  stripePaymentIntentId String?
+  email                 String?
+  shippingAddress       Json
+  billingAddress        Json?
+  promoCode             String?
+  shippingMethod        String?
+  guestId               String?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+  items                 OrderItem[]
+  fulfillment           OrderFulfillment?
+}
+
+model OrderItem {
+  id          String          @id @default(cuid())
+  orderId     String
+  order       Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product         @relation(fields: [productId], references: [id])
+  variantId   String?
+  variant     ProductVariant? @relation(fields: [variantId], references: [id])
+  quantity    Int
+  unitPrice   Int
+  productName String
+  variantLabel String?
+  createdAt   DateTime        @default(now())
+}
+
+model StockReservation {
+  id        String          @id @default(cuid())
+  productId String
+  product   Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variantId String
+  variant   ProductVariant  @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  orderId   String?
+  cartId    String?
+  quantity  Int
+  status    String          @default("active")
+  expiresAt DateTime
+  createdAt DateTime        @default(now())
+
+  @@index([variantId, status, expiresAt])
+}
+
+model ProcessedEvent {
+  id          String   @id @default(cuid())
+  eventId     String   @unique
+  type        String
+  processedAt DateTime @default(now())
+}
+
+model OrderFulfillment {
+  id          String   @id @default(cuid())
+  orderId     String   @unique
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status      String   @default("processing")
+  tracking    String?
+  carrier     String?
+  shippedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

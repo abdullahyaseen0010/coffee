@@ -1,41 +1,50 @@
-☕ Coffee
+# Velvet Roast
 
-A modern, animated coffee shop landing page built with React 19 and Vite, styled with Tailwind CSS, and brought to life with Framer Motion animations. Icons are powered by lucide-react.
+Velvet Roast is a premium coffee e-commerce storefront built with Next.js, TypeScript, Tailwind, Prisma, and Stripe-ready architecture. The app follows the warm editorial vibe of the original reference while turning it into a shoppable storefront with real product pages, cart, checkout flow, and account/admin structure.
 
-Sections
+## Stack
+- Next.js 15 App Router
+- TypeScript + Tailwind CSS
+- Framer Motion
+- Prisma + PostgreSQL
+- NextAuth.js
+- Stripe-ready checkout flow
+- Zustand cart state
+- Zod validation
+- Resend-ready transactional email setup
 
+## Features
+- Premium landing page and product catalog
+- Product detail pages and filtering
+- Cart persistence with Zustand
+- Checkout and order confirmation pages
+- Account, login, register, and password reset flows
+- Admin dashboard concept for inventory and revenue summary
+- SEO metadata, sitemap, and robots configuration
+- Prisma schema and seed file for product catalog data
 
-Navbar : responsive coffee-shop navigation
-Hero : animated landing/intro section
-Featured Coffees : showcase grid of coffee products (name, image, details)
-Brewing Methods : section highlighting different brewing techniques
-Testimonials : customer reviews section
-Footer : site links and social icons
+## Quick start
 
+1. Install dependencies:
+   npm install
 
+2. Copy the environment file:
+   cp .env.example .env.local
 
-⚠️ Note: This is a front-end demo/UI project. The coffee products (e.g. "Ethiopian Yirgacheffe," "Colombian Supremo," "Blue Mountain Reserve," "Italian Dark Roast," "Hawaiian Kona," "French Vanilla Blend") are placeholder content using sample Unsplash images there's no real store, pricing, or checkout behind them. Footer/social links are also placeholders (href="#") and are not connected to real pages. Replace this data with real content before treating it as a production site.
+3. Update the database and auth credentials in `.env.local`.
 
+4. Generate the Prisma client and apply the schema:
+   npx prisma generate
+   npx prisma db push
+   npx prisma db seed
 
+5. Start the app:
+   npm run dev
 
+## Environment variables
 
-🕒 Older project: This was built a while back as a React + Vite practice project. Since then I've learned Next.js and leveled up my skills further, so the code here reflects an earlier stage of my journey rather than my current approach.
+See `.env.example` for the full list of required variables.
 
+## Notes
 
-
-Tech Stack
-
-React · Vite · Tailwind CSS · Framer Motion · lucide-react
-
-Getting Started
-
-Install dependencies and start the dev server:
-
-bashnpm install
-npm run dev
-
-Other scripts
-
-bashnpm run build     # production build
-npm run preview   # preview the production build locally
-npm run lint      # run ESLint
+This app is designed as a production-ready foundation for a coffee store. Stripe and Auth.js are wired for a real implementation but require valid credentials to enable live payments and OAuth.
