@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-import { getAuthenticatedUser, getCartCookieValue, setCartCookie } from "@/lib/auth";
+import { CART_COOKIE, getAuthenticatedUser, getCartCookieValue, setCartCookie } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { getCartSummary, mergeGuestCartIntoUser } from "@/lib/cart";
 import { logger } from "@/lib/logger";
@@ -35,7 +35,7 @@ async function getOrCreateCartForRequest(request: NextRequest, response: NextRes
     const guestKey = getCartCookieValue(request);
     if (guestKey) {
       await mergeGuestCartIntoUser(user.id, guestKey);
-      response.cookies.delete("velvet_roast_cart_key");
+      response.cookies.delete(CART_COOKIE);
     }
 
     return { cart, userId: user.id, guestKey: null };

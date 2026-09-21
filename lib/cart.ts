@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import type { NextRequest, NextResponse } from "next/server";
 
-import { getCartCookieValue, setCartCookie } from "@/lib/auth";
+import { SESSION_COOKIE, getCartCookieValue, setCartCookie } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
 export type CartContext = {
@@ -39,12 +39,12 @@ async function findCartByGuestKey(guestKey: string) {
 }
 
 export async function getCartContext(request: NextRequest, response?: NextResponse): Promise<CartContext> {
-  const sessionCookieValue = request.cookies.get("velvet_roast_session")?.value ?? null;
+  const sessionCookieValue = request.cookies.get(SESSION_COOKIE)?.value ?? null;
   const guestKey = getCartCookieValue(request);
 
   if (sessionCookieValue) {
     // The session cookie is handled through the auth helper, but this method still needs the user ID.
-    const session = request.cookies.get("velvet_roast_session")?.value ?? null;
+    const session = request.cookies.get(SESSION_COOKIE)?.value ?? null;
     const userIdFromSession = session ? JSON.parse(Buffer.from(session.split(".")[0], "base64url").toString("utf8"))?.userId : null;
     if (userIdFromSession) {
       const cart = await findCartByUser(userIdFromSession);

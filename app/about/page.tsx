@@ -7,7 +7,7 @@ export default function AboutPage() {
           <h1 className="mt-3 text-4xl font-black tracking-[-0.06em] text-on-dark sm:text-5xl lg:text-6xl">Coffee that feels like a ritual.</h1>
         </div>
         <div className="rounded-[30px] border border-[#2d1b12]/10 bg-white/70 p-6 text-base leading-8 text-muted-on-light shadow-[0_18px_45px_rgba(71,47,26,0.04)]">
-          Velvet Roast began with a simple idea: great coffee should be as thoughtful as the people who brew it. We work directly with producers who care about quality, sustainability, and long-term relationships across harvest regions.
+          BrewCraft began with a simple idea: great coffee should be as thoughtful as the people who brew it. We work directly with producers who care about quality, sustainability, and long-term relationships across harvest regions.
         </div>
       </div>
 

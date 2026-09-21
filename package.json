@@ -1,13 +1,14 @@
 {
-  "name": "velvet-roast",
+  "name": "brewcraft",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . && node scripts/check-contrast.mjs",
+    "lint": "eslint . && node scripts/check-contrast.mjs && node scripts/check-product-images.mjs",
     "contrast:check": "node scripts/check-contrast.mjs",
+    "check:product-images": "node scripts/check-product-images.mjs",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts"

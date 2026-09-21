@@ -1,6 +1,6 @@
-# Velvet Roast
+# BrewCraft
 
-Velvet Roast is a premium coffee e-commerce storefront built with Next.js, TypeScript, Tailwind, Prisma, and Stripe-ready architecture. The app follows the warm editorial vibe of the original reference while turning it into a shoppable storefront with real product pages, cart, checkout flow, and account/admin structure.
+BrewCraft is a premium coffee e-commerce storefront built with Next.js, TypeScript, Tailwind, Prisma, and Stripe-ready architecture. The app follows the warm editorial vibe of the original reference while turning it into a shoppable storefront with real product pages, cart, checkout flow, and account/admin structure.
 
 ## Stack
 - Next.js 15 App Router

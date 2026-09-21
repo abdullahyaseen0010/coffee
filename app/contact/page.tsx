@@ -1,3 +1,5 @@
+import { SITE_ADDRESS, SITE_EMAIL, SITE_PHONE } from "@/lib/site";
+
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 md:px-6">
@@ -10,9 +12,13 @@ export default function ContactPage() {
         <div className="rounded-[28px] border border-[#2d1b12]/10 bg-white/70 p-6 shadow-[0_18px_45px_rgba(71,47,26,0.04)]">
           <p className="text-sm uppercase tracking-[0.18em] text-[#775538]">Get in touch</p>
           <div className="mt-5 space-y-4 text-sm text-muted-on-light">
-            <p>hello@velvetroast.coffee</p>
-            <p>(503) 555-0147</p>
-            <p>142 Cedar Row,<br />Portland, OR 97205</p>
+            <p>{SITE_EMAIL}</p>
+            <p>{SITE_PHONE}</p>
+            <p>
+              {SITE_ADDRESS[0]}
+              <br />
+              {SITE_ADDRESS[1]}
+            </p>
           </div>
         </div>
 

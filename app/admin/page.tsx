@@ -8,7 +8,7 @@ const sales = [
 
 const products = [
   { name: "Ethiopian Yirgacheffe", stock: 18, price: "$26" },
-  { name: "Velvet Espresso", stock: 11, price: "$30" },
+  { name: "BrewCraft Espresso", stock: 11, price: "$30" },
   { name: "Morning Ritual Blend", stock: 27, price: "$23" },
 ];
 

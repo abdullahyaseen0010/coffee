@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/db";
 
-export const SESSION_COOKIE = "velvet_roast_session";
-export const CART_COOKIE = "velvet_roast_cart_key";
+export const SESSION_COOKIE = "brewcraft_session";
+export const CART_COOKIE = "brewcraft_cart_key";
 
 export type SessionPayload = {
   userId: string;
@@ -14,7 +14,7 @@ export type SessionPayload = {
   exp: number;
 };
 
-const SESSION_SECRET = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "velvet-roast-dev-secret";
+const SESSION_SECRET = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "brewcraft-dev-secret";
 
 function base64UrlEncode(value: string) {
   return Buffer.from(value).toString("base64url");

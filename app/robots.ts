@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://velvet-roast.example/sitemap.xml",
+    sitemap: "https://brewcraftcoffee.vercel.app/sitemap.xml",
   };
 }

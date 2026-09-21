@@ -60,8 +60,8 @@ async function main() {
       ],
     },
     {
-      slug: "velvet-espresso",
-      name: "Velvet Espresso",
+      slug: "brewcraft-espresso",
+      name: "BrewCraft Espresso",
       description: "Sweet, syrupy, and deeply chocolatey with red-fruit brightness.",
       tastingNotes: ["Dark chocolate", "Red fruit", "Hazelnut"],
       roastLevel: "Espresso",

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Camera, Mail, MapPin, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { SITE_ADDRESS, SITE_EMAIL, SITE_NAME, SITE_PHONE, SITE_SOCIAL_HANDLE } from "@/lib/site";
+
 export function SiteFooter() {
   const [year, setYear] = useState<number | null>(null);
 
@@ -40,15 +42,15 @@ export function SiteFooter() {
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[#f1c38e]">Visit</h3>
           <ul className="mt-4 space-y-3 text-sm text-[#d7c8bb]">
-            <li className="flex items-center gap-2"><MapPin size={16} className="text-[#f1c38e]" /> 142 Cedar Row, Portland, OR</li>
-            <li className="flex items-center gap-2"><Phone size={16} className="text-[#f1c38e]" /> (503) 555-0147</li>
-            <li className="flex items-center gap-2"><Mail size={16} className="text-[#f1c38e]" /> hello@brewcraft.coffee</li>
-            <li className="flex items-center gap-2"><Camera size={16} className="text-[#f1c38e]" /> @brewcraftcoffee</li>
+            <li className="flex items-center gap-2"><MapPin size={16} className="text-[#f1c38e]" /> {SITE_ADDRESS[0]}, {SITE_ADDRESS[1]}</li>
+            <li className="flex items-center gap-2"><Phone size={16} className="text-[#f1c38e]" /> {SITE_PHONE}</li>
+            <li className="flex items-center gap-2"><Mail size={16} className="text-[#f1c38e]" /> {SITE_EMAIL}</li>
+            <li className="flex items-center gap-2"><Camera size={16} className="text-[#f1c38e]" /> {SITE_SOCIAL_HANDLE}</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-[#d4a87c]/10 py-4 text-center text-xs text-[#d7c8bb]">
-        {year ? `© ${year} BrewCraft. All rights reserved.` : "© BrewCraft. All rights reserved."}
+        {year ? `© ${year} ${SITE_NAME}. All rights reserved.` : `© ${SITE_NAME}. All rights reserved.`}
       </div>
     </footer>
   );

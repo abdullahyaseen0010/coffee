@@ -43,7 +43,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       try {
-        const saved = window.localStorage.getItem("velvet-roast-cart");
+        const saved = window.localStorage.getItem("brewcraft-cart");
         if (!saved) {
           setItems([]);
           setIsHydrated(true);
@@ -68,7 +68,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      window.localStorage.setItem("velvet-roast-cart", JSON.stringify(items));
+      window.localStorage.setItem("brewcraft-cart", JSON.stringify(items));
     } catch {
       // Ignore storage write errors and keep the cart in memory.
     }

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-import { getAuthenticatedUser } from "@/lib/auth";
+import { CART_COOKIE, getAuthenticatedUser } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { getCartSummary } from "@/lib/cart";
 import { logger } from "@/lib/logger";
@@ -24,7 +24,7 @@ async function resolveCartForItem(request: NextRequest, itemId: string) {
     return item ? { cart, item } : null;
   }
 
-  const guestKey = request.cookies.get("velvet_roast_cart_key")?.value ?? null;
+  const guestKey = request.cookies.get(CART_COOKIE)?.value ?? null;
   if (!guestKey) {
     return null;
   }

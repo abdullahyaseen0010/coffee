@@ -12,12 +12,12 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: {
-    default: "Velvet Roast | Coffee for slow mornings",
-    template: "%s | Velvet Roast",
+    default: "BrewCraft",
+    template: "%s | BrewCraft",
   },
   description:
     "Sourced coffees, small-batch roasts, brewing tools, and a premium coffee ritual designed for thoughtful mornings.",
-  metadataBase: new URL("https://velvet-roast.example"),
+  metadataBase: new URL("https://brewcraftcoffee.vercel.app"),
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
   openGraph: {
-    title: "Velvet Roast",
+    title: "BrewCraft",
     description: "Beautifully roasted coffee with a slow, intentional ritual.",
     type: "website",
   },
