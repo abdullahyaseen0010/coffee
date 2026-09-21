@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${manrope.variable} h-full antialiased`} suppressHydrationWarning>
-      <body className="min-h-full bg-[#120d0b] text-[#f5efe7]">
+      <body className="min-h-full bg-[#120d0b] text-on-dark">
         <CartProvider>
           <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(215,144,86,0.12),transparent_24%),linear-gradient(180deg,#120d0b_0%,#1a130f_100%)]">
             <SiteHeader />

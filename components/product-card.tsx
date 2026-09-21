@@ -2,14 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, ShoppingCart, Star } from "lucide-react";
+import type { MouseEvent } from "react";
 import { formatPrice, type Product } from "@/lib/data";
 import { useCart } from "@/lib/store";
 
 export function ProductCard({ product }: { product: Product }) {
+  const router = useRouter();
   const { addItem } = useCart();
 
-  const handleAdd = () => {
+  const handleAdd = (event?: MouseEvent<HTMLButtonElement>) => {
+    event?.stopPropagation();
     addItem({
       id: `${product.slug}-250-whole-bean`,
       slug: product.slug,
@@ -22,9 +26,24 @@ export function ProductCard({ product }: { product: Product }) {
     });
   };
 
+  const handleOpen = () => {
+    router.push(`/shop/${product.slug}`);
+  };
+
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-[28px] border border-[#d4a87c]/15 bg-[#17110f] shadow-[0_22px_45px_rgba(0,0,0,0.2)] transition duration-300 hover:-translate-y-1 hover:border-[#f1c38e]/30 hover:shadow-[0_26px_60px_rgba(211,138,79,0.12)]">
-      <Link href={`/shop/${product.slug}`} className="block overflow-hidden">
+    <article
+      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[28px] border border-[#d4a87c]/15 bg-[#17110f] shadow-[0_22px_45px_rgba(0,0,0,0.2)] transition duration-300 hover:-translate-y-1 hover:border-[#f1c38e]/30 hover:shadow-[0_26px_60px_rgba(211,138,79,0.12)]"
+      onClick={handleOpen}
+      role="link"
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          handleOpen();
+        }
+      }}
+    >
+      <div className="block overflow-hidden">
         <div className="relative aspect-[4/5] overflow-hidden">
           <Image
             src={product.images[0]}
@@ -38,13 +57,13 @@ export function ProductCard({ product }: { product: Product }) {
             </span>
           ) : null}
         </div>
-      </Link>
+      </div>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#f1c38e]">{product.category}</p>
-            <Link href={`/shop/${product.slug}`} className="mt-1 block text-xl font-semibold leading-tight text-[var(--text-on-dark)] line-clamp-2">
+            <Link href={`/shop/${product.slug}`} className="mt-1 block cursor-pointer text-xl font-semibold leading-tight text-on-dark line-clamp-2">
               {product.name}
             </Link>
           </div>
@@ -70,7 +89,11 @@ export function ProductCard({ product }: { product: Product }) {
             </button>
           </div>
 
-          <Link href={`/shop/${product.slug}`} className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#f1c38e]">
+          <Link
+            href={`/shop/${product.slug}`}
+            className="mt-3 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-[#f1c38e]"
+            onClick={(event) => event.stopPropagation()}
+          >
             View details <ArrowRight size={15} />
           </Link>
         </div>

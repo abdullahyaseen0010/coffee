@@ -18,16 +18,16 @@ export default function AdminPage() {
       <div className="mb-8 flex items-center justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#87614a]">Admin dashboard</p>
-          <h1 className="mt-2 text-4xl font-black tracking-[-0.06em] text-[var(--text-on-dark)]">Operations overview</h1>
+          <h1 className="mt-2 text-4xl font-black tracking-[-0.06em] text-on-dark">Operations overview</h1>
         </div>
-        <Link href="/shop" className="rounded-full bg-[#2d1b12] px-5 py-3 text-sm font-semibold text-[#f8efe7]">View storefront</Link>
+        <Link href="/shop" className="rounded-full bg-[#2d1b12] px-5 py-3 text-sm font-semibold text-on-dark">View storefront</Link>
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
         {sales.map((stat) => (
           <div key={stat.label} className="rounded-[24px] border border-[#2d1b12]/10 bg-white/70 p-6">
             <p className="text-sm uppercase tracking-[0.18em] text-[#87614a]">{stat.label}</p>
-            <p className="mt-3 text-3xl font-black tracking-[-0.06em] text-[#1d120d]">{stat.value}</p>
+            <p className="mt-3 text-3xl font-black tracking-[-0.06em] text-on-light">{stat.value}</p>
             <p className="mt-2 text-sm font-medium text-[#6f432b]">{stat.change} vs last month</p>
           </div>
         ))}
@@ -35,7 +35,7 @@ export default function AdminPage() {
 
       <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="rounded-[28px] border border-[#2d1b12]/10 bg-white/70 p-6">
-          <h2 className="text-2xl font-bold text-[#1d120d]">Recent orders</h2>
+          <h2 className="text-2xl font-bold text-on-light">Recent orders</h2>
           <div className="mt-5 space-y-3">
             {[
               { id: "VRO-1042", customer: "Maya Quinn", status: "Paid" },
@@ -44,8 +44,8 @@ export default function AdminPage() {
             ].map((order) => (
               <div key={order.id} className="flex items-center justify-between rounded-2xl border border-[#2d1b12]/10 bg-[#fffaf3] px-4 py-3">
                 <div>
-                  <p className="font-semibold text-[#1d120d]">{order.id}</p>
-                  <p className="text-sm text-[#4a3429]">{order.customer}</p>
+                  <p className="font-semibold text-on-light">{order.id}</p>
+                  <p className="text-sm text-muted-on-light">{order.customer}</p>
                 </div>
                 <span className="rounded-full bg-[#f0dcc3] px-2 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#6f432b]">{order.status}</span>
               </div>
@@ -54,13 +54,13 @@ export default function AdminPage() {
         </div>
 
         <div className="rounded-[28px] border border-[#2d1b12]/10 bg-white/70 p-6">
-          <h2 className="text-2xl font-bold text-[#1d120d]">Inventory</h2>
+          <h2 className="text-2xl font-bold text-on-light">Inventory</h2>
           <div className="mt-5 space-y-3">
             {products.map((product) => (
               <div key={product.name} className="flex items-center justify-between gap-3 rounded-2xl border border-[#2d1b12]/10 bg-[#fffaf3] px-4 py-3">
                 <div>
-                  <p className="font-semibold text-[#1d120d]">{product.name}</p>
-                  <p className="text-sm text-[#4a3429]">{product.stock} units left</p>
+                  <p className="font-semibold text-on-light">{product.name}</p>
+                  <p className="text-sm text-muted-on-light">{product.stock} units left</p>
                 </div>
                 <span className="text-sm font-semibold text-[#6f432b]">{product.price}</span>
               </div>

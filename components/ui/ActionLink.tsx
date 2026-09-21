@@ -19,7 +19,7 @@ export function ActionLink({
     primary:
       "inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#f1c38e] to-[#d38a4f] px-6 py-3 text-sm font-semibold text-[#17110d] shadow-[0_12px_35px_rgba(211,138,79,0.3)] transition hover:brightness-110",
     secondary:
-      "inline-flex items-center gap-2 rounded-full border border-[#d4a87c]/20 bg-[#1a120f] px-6 py-3 text-sm font-semibold text-[#f3ebdf] transition hover:border-[#f1c38e]/40 hover:text-white",
+      "inline-flex items-center gap-2 rounded-full border border-[#d4a87c]/20 bg-[#1a120f] px-6 py-3 text-sm font-semibold text-on-dark transition hover:border-[#f1c38e]/40 hover:text-on-dark",
   } as const;
 
   return (

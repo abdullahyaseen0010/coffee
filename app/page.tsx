@@ -35,7 +35,7 @@ function FeaturedRoastCarousel() {
 
       <Link
         href={`/shop/${product.slug}`}
-        className="group relative block overflow-hidden rounded-[24px] transition duration-300 hover:scale-[1.01] hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f1c38e]/80"
+        className="group relative block cursor-pointer overflow-hidden rounded-[24px] transition duration-300 hover:scale-[1.01] hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f1c38e]/80"
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -51,7 +51,7 @@ function FeaturedRoastCarousel() {
               alt={product.name}
               width={900}
               height={1100}
-              className="h-[540px] w-full object-cover"
+              className="h-[420px] w-full object-cover sm:h-[500px] lg:h-[540px]"
               priority
             />
           </motion.div>
@@ -165,13 +165,13 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 md:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
           <div className="relative z-10">
             <SectionEyebrow className="mb-5">Small-batch coffee ritual</SectionEyebrow>
-            <h1 className="max-w-xl text-5xl font-black tracking-[-0.06em] text-[var(--text-on-dark)] md:text-7xl">
+            <h1 className="max-w-xl text-4xl font-black tracking-[-0.06em] text-[var(--text-on-dark)] sm:text-5xl md:text-6xl lg:text-7xl">
               The morning brew, elevated.
             </h1>
-            <p className="mt-6 max-w-lg text-lg leading-8 text-[var(--text-muted-on-dark)]">
+            <p className="mt-6 max-w-lg text-base leading-8 text-[var(--text-muted-on-dark)] sm:text-lg">
               Thoughtfully sourced coffees, expertly roasted, and delivered to your door with the warmth of a neighborhood café.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/shop">Shop now</ActionLink>
               <ActionLink href="/about" variant="secondary">
                 Learn our story

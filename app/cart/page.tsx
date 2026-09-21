@@ -13,12 +13,12 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 md:px-6">
-      <h1 className="text-4xl font-black tracking-[-0.06em] text-[var(--text-on-dark)]">Your cart</h1>
+      <h1 className="text-4xl font-black tracking-[-0.06em] text-on-dark sm:text-5xl">Your cart</h1>
 
       {items.length === 0 ? (
         <div className="mt-8 rounded-[28px] border border-dashed border-[#2d1b12]/20 bg-white/60 p-12 text-center">
-          <h2 className="text-2xl font-bold text-[#1d120d]">Your cart is empty</h2>
-          <p className="mt-2 text-[#4a3429]">Add a few favorites and we’ll keep them ready for checkout.</p>
+          <h2 className="text-2xl font-bold text-on-light">Your cart is empty</h2>
+          <p className="mt-2 text-muted-on-light">Add a few favorites and we’ll keep them ready for checkout.</p>
           <Link href="/shop" className="mt-6 inline-flex rounded-full bg-[#2d1b12] px-5 py-3 text-sm font-semibold text-[#f8efe7]">
             Continue shopping
           </Link>
@@ -27,26 +27,26 @@ export default function CartPage() {
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-5">
             {items.map((item) => (
-              <div key={item.id} className="flex flex-col gap-4 rounded-[28px] border border-[#2d1b12]/10 bg-white/70 p-4 shadow-[0_16px_35px_rgba(71,47,26,0.04)] md:flex-row">
+              <div key={item.id} className="flex flex-col gap-4 rounded-[28px] border border-[#2d1b12]/10 bg-white/70 p-4 shadow-[0_16px_35px_rgba(71,47,26,0.04)] sm:flex-row">
                 <div className="relative h-32 w-full overflow-hidden rounded-[20px] md:w-32">
                   <Image src={item.image} alt={item.name} fill className="object-cover" />
                 </div>
 
-                <div className="flex flex-1 flex-col justify-between gap-4 md:flex-row">
+                <div className="flex flex-1 flex-col justify-between gap-4 sm:flex-row">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#87614a]">{item.selectedGrind}</p>
-                    <h2 className="mt-2 text-xl font-semibold text-[#1d120d]">{item.name}</h2>
-                    <p className="mt-1 text-sm text-[#4a3429]">{item.selectedWeight} g</p>
+                    <h2 className="mt-2 text-xl font-semibold text-on-light">{item.name}</h2>
+                    <p className="mt-1 text-sm text-muted-on-light">{item.selectedWeight} g</p>
                   </div>
 
-                  <div className="flex items-center justify-between gap-4 md:items-end md:justify-end">
-                    <div className="inline-flex items-center gap-3 rounded-full border border-[#2d1b12]/15 bg-[#f8f1ea] px-3 py-2">
-                      <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} aria-label={`Decrease quantity for ${item.name}`} className="rounded-full p-1 hover:bg-white"><Minus size={14} /></button>
-                      <span className="min-w-6 text-center text-sm font-semibold">{item.quantity}</span>
-                      <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} aria-label={`Increase quantity for ${item.name}`} className="rounded-full p-1 hover:bg-white"><Plus size={14} /></button>
+                  <div className="flex items-center justify-between gap-4 sm:items-end sm:justify-end">
+                    <div className="inline-flex items-center gap-3 rounded-full border border-[#2d1b12]/15 bg-[#f8f1ea] px-3 py-2 text-on-light shadow-sm">
+                      <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} aria-label={`Decrease quantity for ${item.name}`} className="flex h-7 w-7 items-center justify-center rounded-full text-on-light transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d38a4f]/40 active:bg-[#f3e7db]"><Minus size={14} /></button>
+                      <span className="min-w-6 text-center text-sm font-semibold text-on-light">{item.quantity}</span>
+                      <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} aria-label={`Increase quantity for ${item.name}`} className="flex h-7 w-7 items-center justify-center rounded-full text-on-light transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d38a4f]/40 active:bg-[#f3e7db]"><Plus size={14} /></button>
                     </div>
                     <div className="text-right">
-                      <p className="text-xl font-bold text-[#1d120d]">{formatPrice(item.price * item.quantity)}</p>
+                      <p className="text-xl font-bold text-on-light">{formatPrice(item.price * item.quantity)}</p>
                       <button type="button" onClick={() => removeItem(item.id)} className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-[#7d4f39]">
                         <Trash2 size={14} /> Remove
                       </button>

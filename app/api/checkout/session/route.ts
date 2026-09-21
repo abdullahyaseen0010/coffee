@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getAuthenticatedUser, getCartCookieValue } from "@/lib/auth";
-import { getCartSummary } from "@/lib/cart";
 import { calculateCartTotals, getOrderNumber, getShippingFee } from "@/lib/checkout";
 import { prisma } from "@/lib/db";
 import { logger } from "@/lib/logger";

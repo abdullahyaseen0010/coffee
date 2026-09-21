@@ -1,8 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import { Camera, Mail, MapPin, Phone } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function SiteFooter() {
-  const year = new Date().getFullYear();
+  const [year, setYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setYear(new Date().getFullYear());
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   return (
     <footer className="border-t border-[#d4a87c]/10 bg-[#0f0a08] text-[#f3ecdf]">
@@ -37,7 +48,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-[#d4a87c]/10 py-4 text-center text-xs text-[#d7c8bb]">
-        © {year} BrewCraft. All rights reserved.
+        {year ? `© ${year} BrewCraft. All rights reserved.` : "© BrewCraft. All rights reserved."}
       </div>
     </footer>
   );

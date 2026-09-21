@@ -11,15 +11,28 @@
   --surface-light-strong: #fffaf3;
   --surface-dark: #1a120f;
   --surface-dark-strong: #120d0b;
+  --surface-accent: #f1c38e;
   --text-on-dark: #f5efe7;
   --text-on-light: #1d120d;
+  --text-on-accent: #17110d;
   --text-muted-on-dark: #d7c8bb;
   --text-muted-on-light: #4a3429;
+  --text-muted-on-accent: #6f432b;
   --text-accent: #f1c38e;
   --scrollbar-track: #e9dfd4;
   --scrollbar-thumb: #baa289;
   --scrollbar-thumb-hover: #8c7159;
   --scrollbar-thumb-active: #68513d;
+}
+
+@layer utilities {
+  .text-on-dark { color: var(--text-on-dark); }
+  .text-on-light { color: var(--text-on-light); }
+  .text-on-accent { color: var(--text-on-accent); }
+  .text-muted-on-dark { color: var(--text-muted-on-dark); }
+  .text-muted-on-light { color: var(--text-muted-on-light); }
+  .text-muted-on-accent { color: var(--text-muted-on-accent); }
+  .text-accent { color: var(--text-accent); }
 }
 
 @theme inline {

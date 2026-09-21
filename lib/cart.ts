@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import type { NextRequest, NextResponse } from "next/server";
 
-import { CART_COOKIE, getCartCookieValue, setCartCookie } from "@/lib/auth";
+import { getCartCookieValue, setCartCookie } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
 export type CartContext = {
@@ -40,7 +40,6 @@ async function findCartByGuestKey(guestKey: string) {
 
 export async function getCartContext(request: NextRequest, response?: NextResponse): Promise<CartContext> {
   const sessionCookieValue = request.cookies.get("velvet_roast_session")?.value ?? null;
-  const userId = sessionCookieValue ? null : null;
   const guestKey = getCartCookieValue(request);
 
   if (sessionCookieValue) {

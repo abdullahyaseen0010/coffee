@@ -17,6 +17,7 @@ type CartState = {
   items: CartItem[];
   itemCount: number;
   subtotal: number;
+  isHydrated: boolean;
   addItem: (item: CartItem) => void;
   updateQuantity: (id: string, quantity: number) => void;
   removeItem: (id: string) => void;
@@ -37,21 +38,41 @@ export function useCart() {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("velvet-roast-cart");
-    if (saved) {
+    const frame = window.requestAnimationFrame(() => {
       try {
-        setItems(JSON.parse(saved));
+        const saved = window.localStorage.getItem("velvet-roast-cart");
+        if (!saved) {
+          setItems([]);
+          setIsHydrated(true);
+          return;
+        }
+
+        const parsed = JSON.parse(saved) as CartItem[];
+        setItems(Array.isArray(parsed) ? parsed : []);
       } catch {
         setItems([]);
+      } finally {
+        setIsHydrated(true);
       }
-    }
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("velvet-roast-cart", JSON.stringify(items));
-  }, [items]);
+    if (!isHydrated) {
+      return;
+    }
+
+    try {
+      window.localStorage.setItem("velvet-roast-cart", JSON.stringify(items));
+    } catch {
+      // Ignore storage write errors and keep the cart in memory.
+    }
+  }, [isHydrated, items]);
 
   const value = useMemo<CartState>(() => {
     const addItem = (item: CartItem) => {
@@ -78,12 +99,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
       items,
       itemCount: items.reduce((sum, item) => sum + item.quantity, 0),
       subtotal: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+      isHydrated,
       addItem,
       updateQuantity,
       removeItem,
       clearCart,
     };
-  }, [items]);
+  }, [isHydrated, items]);
 
   return createElement(CartContext.Provider, { value }, children);
 }
