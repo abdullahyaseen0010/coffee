@@ -4,20 +4,32 @@ import Link from "next/link";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 type MobileNavProps = {
   isAuthenticated: boolean;
   userName?: string | null;
 };
 
+function subscribe() {
+  return () => {};
+}
+
+function getClientSnapshot() {
+  return true;
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
+function useHasMounted() {
+  return useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
+}
+
 export function MobileNav({ isAuthenticated, userName }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useHasMounted();
 
   useEffect(() => {
     if (!isOpen) {
@@ -59,7 +71,7 @@ export function MobileNav({ isAuthenticated, userName }: MobileNavProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className="fixed inset-0 z-[100] bg-[#0c0806]/80 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-100 bg-[#0c0806]/80 backdrop-blur-sm md:hidden"
           onClick={() => setIsOpen(false)}
         >
           <motion.aside
@@ -68,7 +80,7 @@ export function MobileNav({ isAuthenticated, userName }: MobileNavProps) {
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 280, damping: 28 }}
             onClick={(event) => event.stopPropagation()}
-            className="absolute right-0 top-0 h-full w-[85vw] max-w-sm overflow-y-auto border-l border-[#d4a87c]/20 bg-[linear-gradient(180deg,#2a1a12_0%,#1a110c_45%,#110a07_100%)] p-5 shadow-[0_0_50px_rgba(0,0,0,0.6)]"
+            className="absolute right-0 top-0 flex h-full w-[85vw] max-w-sm flex-col overflow-hidden border-l border-[#d4a87c]/20 bg-[linear-gradient(180deg,#2a1a12_0%,#1a110c_45%,#110a07_100%)] p-5 shadow-[0_0_50px_rgba(0,0,0,0.6)]"
           >
             {/* warm caramel glow */}
             <div
@@ -112,7 +124,7 @@ export function MobileNav({ isAuthenticated, userName }: MobileNavProps) {
               <Link
                 href="/register"
                 onClick={() => setIsOpen(false)}
-                className="relative mt-6 inline-flex min-h-[44px] w-full items-center justify-center rounded-full bg-[#f1c38e] px-5 py-3 text-sm font-bold text-[#17110d] transition hover:bg-[#f5cfa3]"
+                className="relative mt-auto inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#f1c38e] px-5 py-3 text-sm font-bold text-[#17110d] transition hover:bg-[#f5cfa3]"
               >
                 Create account
               </Link>
