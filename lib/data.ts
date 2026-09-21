@@ -26,6 +26,25 @@ export type BrewingMethod = {
   icon: LucideIcon;
 };
 
+/**
+ * Coffee photos (all hosted on images.unsplash.com, the same photos used on the live site).
+ * Swap any ID here and every product that uses it updates.
+ */
+const unsplash = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&q=80`;
+
+const photos = {
+  pourOver: unsplash("1497636577773-f1231844b336"),
+  cupAndBeans: unsplash("1442512595331-e89e73853f31"),
+  espressoShot: unsplash("1504753793650-d4a2b783c15e"),
+  darkRoast: unsplash("1447933601403-0c6688de566e"),
+  cupOnSaucer: unsplash("1461023058943-07fcbe16d735"),
+  latteArt: unsplash("1559056199-641a0ac8b55e"),
+  cafeTable: unsplash("1521017432531-fbd92d768814"),
+  morningCup: unsplash("1459755486867-b55449bb39ff"),
+  roastedBeans: unsplash("1498804103079-a6351b050096"),
+};
+
 export const products: Product[] = [
   {
     id: 1,
@@ -40,11 +59,7 @@ export const products: Product[] = [
     featured: true,
     rating: 4.9,
     reviews: 240,
-    images: [
-      "https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1470337458703-47c7d0d6656e?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.pourOver, photos.cafeTable, photos.cupOnSaucer],
     badge: "New arrival",
     grindOptions: ["Whole bean", "Espresso", "French press", "Pour over"],
     weightOptions: [250, 500, 1000],
@@ -63,11 +78,7 @@ export const products: Product[] = [
     featured: true,
     rating: 4.8,
     reviews: 198,
-    images: [
-      "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1481833761820-0509d3217039?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.cupAndBeans, photos.morningCup, photos.darkRoast],
     grindOptions: ["Whole bean", "Pour over", "Drip"],
     weightOptions: [250, 500, 1000],
     stock: 24,
@@ -85,11 +96,7 @@ export const products: Product[] = [
     featured: true,
     rating: 4.9,
     reviews: 152,
-    images: [
-      "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-151770160c4f1c8ade5?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.espressoShot, photos.latteArt, photos.roastedBeans],
     badge: "Premium",
     grindOptions: ["Whole bean", "Espresso", "French press"],
     weightOptions: [250, 500],
@@ -108,11 +115,7 @@ export const products: Product[] = [
     featured: true,
     rating: 4.7,
     reviews: 186,
-    images: [
-      "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1461988091159-192b6df7054f?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.darkRoast, photos.espressoShot, photos.latteArt],
     grindOptions: ["Whole bean", "Espresso", "French press"],
     weightOptions: [250, 500, 1000],
     stock: 28,
@@ -130,11 +133,7 @@ export const products: Product[] = [
     featured: false,
     rating: 4.9,
     reviews: 130,
-    images: [
-      "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1532009877282-5d8f154557d8?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.cupOnSaucer, photos.pourOver, photos.cupAndBeans],
     grindOptions: ["Whole bean", "Pour over", "Drip"],
     weightOptions: [250, 500],
     stock: 11,
@@ -152,11 +151,7 @@ export const products: Product[] = [
     featured: false,
     rating: 4.6,
     reviews: 214,
-    images: [
-      "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1459755486867-b55449bb39ff?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1523908511403-47c7d0d6656e?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.latteArt, photos.morningCup, photos.roastedBeans],
     badge: "Best seller",
     grindOptions: ["Whole bean", "Espresso", "Drip"],
     weightOptions: [250, 500, 1000],
@@ -175,11 +170,7 @@ export const products: Product[] = [
     featured: false,
     rating: 4.8,
     reviews: 142,
-    images: [
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.cafeTable, photos.cupAndBeans, photos.pourOver],
     grindOptions: ["Whole bean", "Pour over", "French press"],
     weightOptions: [250, 500],
     stock: 20,
@@ -197,11 +188,7 @@ export const products: Product[] = [
     featured: false,
     rating: 4.7,
     reviews: 118,
-    images: [
-      "https://images.unsplash.com/photo-1464189552928-bd8d6d2e0f70?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1506617420156-8e453e8d7b9e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.cupOnSaucer, photos.darkRoast, photos.espressoShot],
     grindOptions: ["Whole bean", "French press", "Espresso"],
     weightOptions: [250, 500, 1000],
     stock: 16,
@@ -219,11 +206,7 @@ export const products: Product[] = [
     featured: false,
     rating: 4.8,
     reviews: 266,
-    images: [
-      "https://images.unsplash.com/photo-1511467684430-28908f7d94a0?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.morningCup, photos.cafeTable, photos.roastedBeans],
     grindOptions: ["Whole bean", "Drip", "Pour over"],
     weightOptions: [250, 500],
     stock: 41,
@@ -241,11 +224,7 @@ export const products: Product[] = [
     featured: false,
     rating: 4.7,
     reviews: 105,
-    images: [
-      "https://images.unsplash.com/photo-1496307653780-42d6a4d1d9ee?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.roastedBeans, photos.cupOnSaucer, photos.cupAndBeans],
     grindOptions: ["Whole bean", "French press", "Drip"],
     weightOptions: [250, 500, 1000],
     stock: 22,
@@ -263,11 +242,7 @@ export const products: Product[] = [
     featured: false,
     rating: 4.9,
     reviews: 176,
-    images: [
-      "https://images.unsplash.com/photo-1582213782179-e0d53f98f2df?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1516466723875-4ec8be5a82d4?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.latteArt, photos.espressoShot, photos.darkRoast],
     badge: "Espresso pick",
     grindOptions: ["Whole bean", "Espresso"],
     weightOptions: [250, 500],
@@ -286,11 +261,7 @@ export const products: Product[] = [
     featured: false,
     rating: 4.8,
     reviews: 144,
-    images: [
-      "https://images.unsplash.com/photo-1534294228301-0a8b5712c365?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1509194428189-3d78f5d7d7db?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: [photos.cupAndBeans, photos.cafeTable, photos.morningCup],
     grindOptions: ["Whole bean", "Pour over", "Drip"],
     weightOptions: [250, 500, 1000],
     stock: 14,
