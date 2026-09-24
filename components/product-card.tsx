@@ -2,18 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { ArrowRight, ShoppingCart, Star } from "lucide-react";
+import { Plus, Star } from "lucide-react";
 import type { MouseEvent } from "react";
 import { formatPrice, type Product } from "@/lib/data";
 import { useCart } from "@/lib/store";
 
 export function ProductCard({ product }: { product: Product }) {
-  const router = useRouter();
   const { addItem } = useCart();
 
-  const handleAdd = (event?: MouseEvent<HTMLButtonElement>) => {
-    event?.stopPropagation();
+  const handleAdd = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     addItem({
       id: `${product.slug}-250-whole-bean`,
       slug: product.slug,
@@ -26,76 +24,59 @@ export function ProductCard({ product }: { product: Product }) {
     });
   };
 
-  const handleOpen = () => {
-    router.push(`/shop/${product.slug}`);
-  };
-
   return (
-    <article
-      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[28px] border border-[#d4a87c]/15 bg-[#17110f] shadow-[0_22px_45px_rgba(0,0,0,0.2)] transition duration-300 hover:-translate-y-1 hover:border-[#f1c38e]/30 hover:shadow-[0_26px_60px_rgba(211,138,79,0.12)]"
-      onClick={handleOpen}
-      role="link"
-      tabIndex={0}
-      onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          handleOpen();
-        }
-      }}
-    >
-      <div className="block overflow-hidden">
-        <div className="relative aspect-[4/5] overflow-hidden">
-          <Image
-            src={product.images[0]}
-            alt={product.name}
-            fill
-            className="object-cover transition duration-500 group-hover:scale-105"
-          />
-          {product.badge ? (
-            <span className="absolute left-4 top-4 rounded-full bg-[#f1c38e] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1a120f]">
-              {product.badge}
-            </span>
-          ) : null}
-        </div>
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-[#d4a87c]/15 bg-[#17110f] transition-colors duration-200 hover:border-[#f1c38e]/40 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-[#f1c38e]">
+      <div className="relative aspect-[4/5] overflow-hidden bg-[#221915]">
+        <Image
+          src={product.images[0]}
+          alt={product.name}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        />
+        {product.badge ? (
+          <span className="absolute left-3 top-3 rounded-sm bg-[#17110f]/85 px-2 py-1 text-[11px] font-medium text-[#f1c38e] backdrop-blur-sm">
+            {product.badge}
+          </span>
+        ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#f1c38e]">{product.category}</p>
-            <Link href={`/shop/${product.slug}`} className="mt-1 block cursor-pointer text-xl font-semibold leading-tight text-on-dark line-clamp-2">
-              {product.name}
-            </Link>
-          </div>
-          <div className="flex shrink-0 items-center gap-1 rounded-full bg-[#f1c38e]/10 px-2 py-1 text-xs font-semibold text-[#f5d7a4]">
-            <Star size={12} fill="currentColor" /> {product.rating}
-          </div>
+      <div className="flex flex-1 flex-col p-4">
+        <div className="flex items-center justify-between gap-3 text-xs text-[#d9b78b]">
+          <p className="truncate">
+            {product.category} · {product.origin}
+          </p>
+          <p className="flex shrink-0 items-center gap-1 tabular-nums">
+            <Star size={12} className="fill-current text-[#f1c38e]" />
+            {product.rating}
+          </p>
         </div>
 
-        <p className="mt-4 min-h-[3.25rem] text-sm leading-6 text-[#d7c8bb] line-clamp-2">{product.description}</p>
-
-        <div className="mt-auto pt-4">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="text-2xl font-black tracking-[-0.06em] text-[var(--text-on-dark)]">{formatPrice(product.basePrice)}</p>
-              <p className="text-xs uppercase tracking-[0.18em] text-[#d9b78b]">{product.origin}</p>
-            </div>
-            <button
-              type="button"
-              onClick={handleAdd}
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#f1c38e] to-[#d38a4f] px-4 py-2.5 text-sm font-semibold text-[#17110d] transition hover:brightness-110"
-            >
-              <ShoppingCart size={15} /> Add
-            </button>
-          </div>
-
+        <h3 className="mt-2 text-lg font-semibold leading-snug text-on-dark line-clamp-2">
           <Link
             href={`/shop/${product.slug}`}
-            className="mt-3 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-[#f1c38e]"
-            onClick={(event) => event.stopPropagation()}
+            className="outline-none after:absolute after:inset-0 after:content-['']"
           >
-            View details <ArrowRight size={15} />
+            {product.name}
           </Link>
+        </h3>
+
+        <p className="mt-2 min-h-10 text-sm leading-5 text-[#d7c8bb]/80 line-clamp-2">
+          {product.description}
+        </p>
+
+        <div className="mt-auto flex items-center justify-between gap-3 border-t border-[#d4a87c]/10 pt-4">
+          <p className="text-lg font-semibold tabular-nums text-[var(--text-on-dark)]">
+            {formatPrice(product.basePrice)}
+          </p>
+          <button
+            type="button"
+            onClick={handleAdd}
+            aria-label={`Add ${product.name} to cart`}
+            className="relative z-10 inline-flex items-center gap-1.5 rounded-md bg-[#f1c38e] px-3.5 py-2 text-sm font-medium text-[#17110d] transition hover:bg-[#f5d7a4] active:scale-[0.97]"
+          >
+            <Plus size={14} strokeWidth={2.5} /> Add
+          </button>
         </div>
       </div>
     </article>
